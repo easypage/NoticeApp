@@ -1,25 +1,13 @@
-import logo from "./logo.svg";
-import "./App.css";
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          변경된 시작
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+import Mycalendar from "./components/Mycalendar";
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Mycalendar />
+      </div>
+    );
+  }
 }
 
 export default App;
