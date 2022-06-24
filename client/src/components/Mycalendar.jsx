@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-
+import interactionPlugin from "@fullcalendar/interaction";
 import "../css/main.css";
+
 class Mycalendar extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="mypage-body">
@@ -14,11 +12,9 @@ class Mycalendar extends Component {
           <div className="body-info-container">
             <div className="calendar-wrapper">
               <FullCalendar
-                defaultView="dayGridMonth"
-                plugins={[dayGridPlugin]}
+                defaultView="calendarPlugins"
+                plugins={[dayGridPlugin, interactionPlugin]}
               />
-              <button type="email">하이여</button>
-              <button type="email">하이여1</button>
             </div>
           </div>
         </div>
