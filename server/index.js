@@ -1,10 +1,27 @@
-const express = require("express");
-const app = express();
+// index.js
+const express = require("express"); // express 임포트
+const app = express(); // app생성
+const port = 5000;
+
 app.get("/", function (req, res) {
-  res.send("Hello World!");
+  res.send("hello world!!");
 });
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log("Server is working : PORT - ", port);
-});
+
+app.listen(port, () => console.log(`${port}포트입니다.`));
+
+// 몽구스 연결
+const mongoose = require("mongoose");
+mongoose
+  .connect(
+    "mongodb+srv://minib:root@cluster0.y8vrqhs.mongodb.net/?retryWrites=true&w=majority",
+    {
+      // useNewUrlPaser: true,
+      // useUnifiedTofology: true,
+      // useCreateIndex: true,
+      // useFindAndModify: false,
+    }
+  )
+  .then(() => console.log("MongoDB conected"))
+  .catch((err) => {
+    console.log(err);
+  });
