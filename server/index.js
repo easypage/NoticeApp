@@ -13,6 +13,12 @@ const { json } = require("express");
 // 카카오 토큰
 const ACCESS_TOKEN = "7yF2_3ficSzfHTjH9Wy8hAwxfwjIHRY6X-rEDGBnCisNHwAAAYGi9Mlv";
 
+const users = [
+  { title: 1, date: "2022-06-27" },
+  { title: 2, date: "2022-06-28" },
+  { title: 3, date: "2022-06-21" },
+];
+
 var dataString = `template_object={
   "object_type": "text",
   "text": "됬다!! 담배 피러간다.",
@@ -43,18 +49,22 @@ mongoose
   });
 
 app.get("/", async function (req, res) {
-  // const user = new User({
-  //   name: "lee",
-  //   age: 12,
-  // });
-  // await user
-  //   .save()
-  //   .then((result) => {
-  //     console.log(result);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
+  const user = new User({
+    name: "kim",
+    state: "awe",
+    reason: "awe",
+    private: true,
+    title: "3",
+    date: "2022-06-25",
+  });
+  await user
+    .save()
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
   try {
     await axios
@@ -75,4 +85,16 @@ app.get("/", async function (req, res) {
   }
 
   res.send("hello world!!");
+});
+
+app.get("/json", async function (req, res) {
+  const Users = [];
+
+  const datas = await User.find({});
+
+  datas.map((el) => {
+    Users.push({ title: el.title, date: el.date });
+  });
+
+  res.json({ ok: true, users });
 });

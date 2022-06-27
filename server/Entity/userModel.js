@@ -5,6 +5,8 @@ const UserSchema = new mongoose.Schema({
   state: String,
   reason: String,
   private: Boolean,
+  title: String,
+  date: String,
 });
 
 const User = mongoose.model("User", UserSchema);
