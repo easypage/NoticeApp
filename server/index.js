@@ -13,12 +13,6 @@ const { json } = require("express");
 // 카카오 토큰
 const ACCESS_TOKEN = "7yF2_3ficSzfHTjH9Wy8hAwxfwjIHRY6X-rEDGBnCisNHwAAAYGi9Mlv";
 
-const users = [
-  { title: 1, date: "2022-06-27" },
-  { title: 2, date: "2022-06-28" },
-  { title: 3, date: "2022-06-21" },
-];
-
 var dataString = `template_object={
   "object_type": "text",
   "text": "됬다!! 담배 피러간다.",
@@ -66,6 +60,22 @@ app.get("/", async function (req, res) {
       console.error(err);
     });
 
+  res.send("hello world!!");
+});
+
+app.get("/json", async function (req, res) {
+  const Users = [];
+
+  const datas = await User.find({});
+
+  datas.map((el) => {
+    Users.push({ title: el.title, date: el.date });
+  });
+
+  res.json({ ok: true, Users });
+});
+
+app.get("/kakao", async function (req, res) {
   try {
     await axios
       .post(
@@ -83,18 +93,4 @@ app.get("/", async function (req, res) {
     console.log(error);
     console.log("에러발생");
   }
-
-  res.send("hello world!!");
-});
-
-app.get("/json", async function (req, res) {
-  const Users = [];
-
-  const datas = await User.find({});
-
-  datas.map((el) => {
-    Users.push({ title: el.title, date: el.date });
-  });
-
-  res.json({ ok: true, users });
 });
