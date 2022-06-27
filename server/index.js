@@ -3,8 +3,10 @@ const express = require("express"); // express 임포트
 const axios = require("axios");
 
 const app = express(); // app생성
+const cors = require("cors");
 const port = 5000;
 
+app.use(cors());
 // 몽구스 연결
 const mongoose = require("mongoose");
 const User = require("./Entity/userModel");
