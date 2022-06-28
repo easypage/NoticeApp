@@ -111,8 +111,9 @@ export const Modal = () => {
                         id={"mydp"}
                         locale={ko}
                         selected={startDate}
-                        dateFormat="yyyy-MM-dd" // 날짜 형식
                         onChange={(date) => setStartDate(date)}
+                        dateFormat="yyyy-MM-dd" // 날짜 형식
+                        placeholderText="Click to select a date"
                       />
                     </li>
 
