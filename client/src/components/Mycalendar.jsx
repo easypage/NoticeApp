@@ -4,9 +4,32 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import "../css/main.css";
+
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+
 class Mycalendar extends Component {
+  state = {
+    modalIsOpen: false,
+    secondModalIsOpen: false,
+  };
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  };
+
+  openSecondModal = () => {
+    this.setState({ secondModalIsOpen: true });
+  };
+
+  closeSecondModal = () => {
+    this.setState({ secondModalIsOpen: false });
+  };
+
   render() {
     return (
       <div className="mypage-body">

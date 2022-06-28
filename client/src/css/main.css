@@ -688,3 +688,18 @@ A HORIZONTAL event
 .mypage-body {
   width: 60%;
 }
+.fc-content ul li {
+  list-style: none;
+  margin-top: 10px;
+}
+
+input {
+  width: 200px;
+  height: 25px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+}
