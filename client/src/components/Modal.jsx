@@ -1,12 +1,24 @@
 import { useState } from "react";
 import styled from "styled-components";
-
+import { ko } from "date-fns/esm/locale";
+import DatePicker from "react-datepicker"; // DatePicker 라는 컴포넌트도 가져오깅
+import "react-datepicker/dist/react-datepicker.css"; // 스타일 맥이기
 export const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   position: relative;
+`;
+
+export const MyDatePicker = styled(DatePicker)`
+  width: 90%;
+  height: 3rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background-color: transparent;
+  color: black;
+  border: 1px solid;
 `;
 
 export const ModalBackdrop = styled.div`
@@ -74,7 +86,7 @@ export const Modal = () => {
 
     console.log("날짜 " + dday + " " + "제목" + dd1 + " " + "사유" + dd2);
   }
-
+  const [startDate, setStartDate] = useState(new Date());
   return (
     <>
       <ModalContainer>
@@ -95,8 +107,12 @@ export const Modal = () => {
                   <h1>일정</h1>
                   <ul>
                     <li>
-                      <p className="pame">날짜 :</p>
-                      <input type="date" name="date" id="fcDate" />
+                      <MyDatePicker
+                        locale={ko}
+                        selected={startDate}
+                        dateFormat="yyyy-MM-dd" // 날짜 형식
+                        onChange={(date) => setStartDate(date)}
+                      />
                     </li>
                     <li>
                       <p className="pame">제목 :</p>
