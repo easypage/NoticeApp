@@ -46,6 +46,11 @@ class Mycalendar extends Component {
               left: "prev,today,next",
               center: "title",
             }}
+            events={[
+              { title: "event 1", date: "2022-06-27" },
+              { title: "event 2", date: "2022-06-28" },
+            ]}
+            selectable={true}
           />
         </div>
         <Modal />
