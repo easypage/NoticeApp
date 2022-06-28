@@ -80,7 +80,7 @@ export const Modal = () => {
     setIsOpen(!isOpen);
   };
   function input() {
-    const dday = document.querySelector("#fcDate").value;
+    const dday = document.querySelector("#mydp").value;
     const dd1 = document.querySelector("#fcTitle").value;
     const dd2 = document.querySelector("#fcReason").value;
 
@@ -108,12 +108,14 @@ export const Modal = () => {
                   <ul>
                     <li>
                       <MyDatePicker
+                        id={"mydp"}
                         locale={ko}
                         selected={startDate}
                         dateFormat="yyyy-MM-dd" // 날짜 형식
                         onChange={(date) => setStartDate(date)}
                       />
                     </li>
+
                     <li>
                       <p className="pame">제목 :</p>
                       <input type="text" name="fcTitle" id="fcTitle" />
