@@ -1,29 +1,21 @@
 // index.js
 const express = require("express"); // express 임포트
-const axios = require("axios");
-
 const app = express(); // app생성
 const cors = require("cors");
+app.use(cors());
+
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.json());
+
 const port = 5000;
 
-app.use(cors());
+const kakaoRouter = require("./router/kakao");
+
 // 몽구스 연결
 const mongoose = require("mongoose");
 const User = require("./Entity/userModel");
-const { json } = require("express");
-
-// 카카오 토큰
-const ACCESS_TOKEN = "7yF2_3ficSzfHTjH9Wy8hAwxfwjIHRY6X-rEDGBnCisNHwAAAYGi9Mlv";
-
-var dataString = `template_object={
-  "object_type": "text",
-  "text": "됬다!! 담배 피러간다.",
-  "link": {
-      "web_url": "https://developers.kakao.com",
-      "mobile_web_url": "https://developers.kakao.com"
-  },
-  "button_title": "바로 확인"
-}`;
+var randomstring = require("randomstring");
 
 app.listen(port, () => {
   console.log(`${port}포트입니다.`);
@@ -44,14 +36,18 @@ mongoose
     console.log(err);
   });
 
+app.use("/kakao", kakaoRouter);
+
+// 유저 입력
 app.get("/", async function (req, res) {
   const user = new User({
     name: "kim",
-    state: "awe",
-    reason: "awe",
-    private: true,
+    state: "지각",
+    reason: "프로젝트 서버 배포!",
+    private: false,
     title: "3",
     date: "2022-06-25",
+    noticeToken: randomstring.generate(12),
   });
   await user
     .save()
@@ -65,6 +61,7 @@ app.get("/", async function (req, res) {
   res.send("hello world!!");
 });
 
+// test용 json
 app.get("/json", async function (req, res) {
   const Users = [];
 
@@ -75,24 +72,4 @@ app.get("/json", async function (req, res) {
   });
 
   res.json({ ok: true, Users });
-});
-
-app.get("/kakao", async function (req, res) {
-  try {
-    await axios
-      .post(
-        "https://kapi.kakao.com/v2/api/talk/memo/default/send",
-        dataString,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded charset=utf-8",
-            Authorization: `Bearer ${ACCESS_TOKEN}`,
-          },
-        }
-      )
-      .catch((errer) => console.log(errer));
-  } catch (error) {
-    console.log(error);
-    console.log("에러발생");
-  }
 });
