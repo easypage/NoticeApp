@@ -51,6 +51,9 @@ class Mycalendar extends Component {
               { title: "event 2", date: "2022-06-28" },
             ]}
             selectable={true}
+            select={function (kk) {
+              console.log(kk.startStr);
+            }}
           />
         </div>
         <Modal />
