@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import close from "../z.png";
+
 const Container = styled.div`
   position: absolute;
   width: 100%;
@@ -58,6 +60,15 @@ const ModalBlock = styled.div`
   }
 `;
 
+const Close = styled.img.attrs({
+  src: close,
+})`
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  cursor: pointer;
+`;
+
 const Contents = styled.div`
   display: flex;
   flex-direction: column;
@@ -69,6 +80,7 @@ const ModalFrame = ({ _handleModal, children, ...rest }) => {
     <Container>
       <Background onClick={_handleModal} />
       <ModalBlock {...rest}>
+        <Close onClick={_handleModal} />
         <Contents>{children}</Contents>
       </ModalBlock>
     </Container>

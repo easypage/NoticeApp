@@ -4,7 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import "../css/main.css";
-
+import { Modal } from "./Modal";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 
@@ -48,6 +48,7 @@ class Mycalendar extends Component {
             }}
           />
         </div>
+        <Modal />
       </div>
     );
   }

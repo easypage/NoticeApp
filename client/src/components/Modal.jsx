@@ -27,12 +27,19 @@ export const ModalBackdrop = styled.div`
 
 export const ModalBtn = styled.button`
   background-color: #4000c7;
+  font-size: 20px;
   text-decoration: none;
   border: none;
-  padding: 20px;
+  padding: 15px;
   color: white;
-  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
   cursor: grab;
+  position: relative;
+  top: 0px;
+  left: 510px;
+  z-index: 1;
 `;
 
 export const ModalView = styled.div.attrs((props) => ({
@@ -43,30 +50,35 @@ export const ModalView = styled.div.attrs((props) => ({
   justify-content: center;
   align-items: center;
   background-color: white;
-  width: 200px;
-  height: 100px;
+  width: 800px;
+  height: 600px;
   border-radius: 1rem;
   position: relative;
   > .close-btn {
     position: absolute;
-    top: 2px;
-    right: 7px;
+    font-size: 75px;
+    top: -90px;
+    right: 30px;
     cursor: pointer;
   }
 `;
-
 export const Modal = () => {
   const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
   const openModalHandler = (event) => {
     setIsOpen(!isOpen);
   };
+  function input() {
+    const dday = document.querySelector("#fcDate").value;
+    const dd1 = document.querySelector("#fcTitle").value;
+    const dd2 = document.querySelector("#fcReason").value;
+
+    console.log("날짜 " + dday + " " + "제목" + dd1 + " " + "사유" + dd2);
+  }
 
   return (
     <>
       <ModalContainer>
-        <ModalBtn onClick={openModalHandler}>
-          {isOpen ? "Opened!" : "Open Modal"}
-        </ModalBtn>
+        <ModalBtn onClick={openModalHandler}>{isOpen ? "+" : "+"}</ModalBtn>
 
         {isOpen ? (
           <ModalBackdrop onClick={openModalHandler}>
@@ -76,9 +88,65 @@ export const Modal = () => {
               }}
             >
               <div className="close-btn" onClick={openModalHandler}>
-                &times;
+                <p>x</p>
               </div>
-              <div>HELLO CODESTATES!</div>
+              <div className="fc-wrapper">
+                <div className="fc-content">
+                  <h1>일정</h1>
+                  <ul>
+                    <li>
+                      <p className="pame">날짜 :</p>
+                      <input type="date" name="date" id="fcDate" />
+                    </li>
+                    <li>
+                      <p className="pame">제목 :</p>
+                      <input type="text" name="fcTitle" id="fcTitle" />
+                    </li>
+                    <li>
+                      <p className="pame">사유 :</p>
+                      <input type="text" name="fcReason" id="fcReason" />
+                    </li>
+                    <li>
+                      상태 : 지각
+                      <input
+                        type="checkbox"
+                        name="state"
+                        id="tadry"
+                        value={"지각"}
+                      />
+                      결석
+                      <input
+                        type="checkbox"
+                        name="state"
+                        id="absent"
+                        value={"결석"}
+                      />
+                      조퇴
+                      <input
+                        type="checkbox"
+                        name="state "
+                        id="early-departure"
+                      />
+                    </li>
+                    <li>
+                      <p className="pame">사유 비공개 :</p>
+                      <input
+                        type="text"
+                        name="fc-reason-hidden"
+                        id="fc-reason"
+                      />
+                    </li>
+
+                    <button
+                      type="submit"
+                      onClick={input}
+                      className="insertButton"
+                    >
+                      등록
+                    </button>
+                  </ul>
+                </div>
+              </div>
             </ModalView>
           </ModalBackdrop>
         ) : null}

@@ -686,20 +686,52 @@ A HORIZONTAL event
 }
 
 .mypage-body {
-  width: 60%;
+  margin: 0 auto;
+  padding: 0 auto;
+  width: 950px;
+  height: 30px;
 }
 .fc-content ul li {
   list-style: none;
   margin-top: 10px;
 }
-
 input {
-  width: 200px;
-  height: 25px;
+}
+input[type="text"] {
+  width: 400px;
+  height: 40px;
   font-size: 15px;
   border: 0;
   border-radius: 15px;
   outline: none;
   padding-left: 10px;
   background-color: rgb(233, 233, 233);
+}
+input[type="date"] {
+  width: 400px;
+  height: 40px;
+  font-size: 18px;
+  font-family: "KOTRAHOPE";
+  font-weight: bold;
+  font-style: normal;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+}
+.insertButton {
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+  margin-top: 10px;
+  text-align: center;
+  position: relative;
+  left: 150px;
+  cursor: pointer;
 }
