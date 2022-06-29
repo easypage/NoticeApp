@@ -81,23 +81,52 @@ export const Modal = () => {
   const openModalHandler = (event) => {
     setIsOpen(!isOpen);
   };
-  function input() {
-    const dday = document.querySelector("#mydp").value;
-    const dd1 = document.querySelector("#fcTitle").value;
-    const dd2 = document.querySelector("#fcReason").value;
 
-    console.log("날짜 " + dday + " " + "제목" + dd1 + " " + "사유" + dd2);
-  }
-
-  async function postData() {
-    try {
-      const response = await axios.post("localhost:5000", {});
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  }
   const [startDate, setStartDate] = useState(new Date());
+  const [state, setstate] = useState();
+  const [fctitle, setfcTitle] = useState("");
+  const [fcReason, setfcReason] = useState("");
+  const [fcReasonHidden, setfcReasonHidden] = useState("");
+
+  const setstateHandler = (e) => {
+    e.preventDefault();
+    setstate(e.target.value);
+  };
+
+  const fcTitleHandler = (e) => {
+    e.preventDefault();
+    setfcTitle(e.target.value);
+  };
+
+  const fcReasonHandler = (e) => {
+    e.preventDefault();
+    setfcReason(e.target.value);
+  };
+
+  const fcReasonHiddenHandler = (e) => {
+    e.preventDefault();
+    setfcReasonHidden(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    // state에 저장한 값을 가져옵니다.
+
+    let body = {
+      fctitle: fctitle,
+      fcReason: fcReason,
+      fcReasonHidden: fcReasonHidden,
+      state: state,
+      startDate:
+        startDate.getFullYear() +
+        "-" +
+        startDate.getMonth() +
+        "-" +
+        startDate.getDay(),
+    };
+    console.log(body);
+  };
+
   return (
     <>
       <ModalContainer>
@@ -116,65 +145,81 @@ export const Modal = () => {
               <div className="fc-wrapper">
                 <div className="fc-content">
                   <h1>일정</h1>
-                  <ul>
-                    <li>
-                      <MyDatePicker
-                        id={"mydp"}
-                        locale={ko}
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
-                        dateFormat="yyyy-MM-dd" // 날짜 형식
-                        placeholderText="Click to select a date"
-                      />
-                    </li>
+                  <form onSubmit={submitHandler}>
+                    <ul>
+                      <li>
+                        <MyDatePicker
+                          id="mydp"
+                          locale={ko}
+                          selected={startDate}
+                          onChange={(date) => setStartDate(date)}
+                          dateFormat="yyyy-MM-dd" // 날짜 형식
+                          placeholderText="Click to select a date"
+                        />
+                      </li>
 
-                    <li>
-                      <p className="pame">제목 :</p>
-                      <input type="text" name="fcTitle" id="fcTitle" />
-                    </li>
-                    <li>
-                      <p className="pame">사유 :</p>
-                      <input type="text" name="fcReason" id="fcReason" />
-                    </li>
-                    <li>
-                      상태 : 지각
-                      <input
-                        type="checkbox"
-                        name="state"
-                        id="tadry"
-                        value={"지각"}
-                      />
-                      결석
-                      <input
-                        type="checkbox"
-                        name="state"
-                        id="absent"
-                        value={"결석"}
-                      />
-                      조퇴
-                      <input
-                        type="checkbox"
-                        name="state "
-                        id="early-departure"
-                      />
-                    </li>
-                    <li>
-                      <p className="pame">사유 비공개 :</p>
-                      <input
-                        type="text"
-                        name="fc-reason-hidden"
-                        id="fc-reason"
-                      />
-                    </li>
+                      <li>
+                        <p className="pame">제목 :</p>
+                        <input
+                          type="text"
+                          name="fcTitle"
+                          id="fcTitle"
+                          onChange={fcTitleHandler}
+                          value={fctitle}
+                        />
+                      </li>
+                      <li>
+                        <p className="pame">사유 :</p>
+                        <input
+                          type="text"
+                          name="fcReason"
+                          id="fcReason"
+                          onChange={fcReasonHandler}
+                        />
+                      </li>
+                      <li>
+                        상태 : 지각
+                        <input
+                          type="checkbox"
+                          name="state"
+                          id="tadry"
+                          value={"지각"}
+                          onChange={setstateHandler}
+                        />
+                        결석
+                        <input
+                          type="checkbox"
+                          name="state"
+                          id="absent"
+                          value={"결석"}
+                          onChange={setstateHandler}
+                        />
+                        조퇴
+                        <input
+                          type="checkbox"
+                          name="state "
+                          id="early-departure"
+                          value={"조퇴"}
+                          onChange={setstateHandler}
+                        />
+                      </li>
+                      <li>
+                        <p className="pame">사유 비공개 :</p>
+                        <input
+                          type="checkbox"
+                          name="fcReasonHidden"
+                          id="fcReasonHidden"
+                          onChange={fcReasonHiddenHandler}
+                          value={"비공개"}
+                        />
+                        비공개
+                      </li>
 
-                    <button
-                      type="submit"
-                      onClick={input}
-                      className="insertButton"
-                    >
-                      등록
-                    </button>
-                  </ul>
+                      <button type="submit" className="insertButton">
+                        등록
+                      </button>
+                    </ul>
+                  </form>
                 </div>
               </div>
             </ModalView>

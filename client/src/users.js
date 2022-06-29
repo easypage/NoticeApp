@@ -5,7 +5,9 @@ function Users() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/json");
+        const response = await axios.get(
+          "https://attendancechecknotice.herokuapp.com/json"
+        );
         console.log(response);
       } catch (e) {
         console.log(e);
