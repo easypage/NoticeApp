@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { ko } from "date-fns/esm/locale";
 import DatePicker from "react-datepicker"; // DatePicker 라는 컴포넌트도 가져오깅
 import "react-datepicker/dist/react-datepicker.css"; // 스타일 맥이기
+import { axios } from "axios";
+
 export const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -85,6 +87,15 @@ export const Modal = () => {
     const dd2 = document.querySelector("#fcReason").value;
 
     console.log("날짜 " + dday + " " + "제목" + dd1 + " " + "사유" + dd2);
+  }
+
+  async function postData() {
+    try {
+      const response = await axios.post("localhost:5000", {});
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
   const [startDate, setStartDate] = useState(new Date());
   return (
