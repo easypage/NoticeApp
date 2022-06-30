@@ -82,8 +82,8 @@ export const Modal = () => {
     setIsOpen(!isOpen);
   };
 
-  const [date, setdate] = useState();
-  const [state, setstate] = useState();
+  const [date, setdate] = useState("");
+  const [state, setstate] = useState("");
   const [name, setname] = useState("");
   const [title, settitle] = useState("");
   const [reason, setfcreason] = useState("");
@@ -134,20 +134,28 @@ export const Modal = () => {
     };
     console.log(body);
 
-    const res = await axios
-      .post(
-        "https://attendancechecknotice.herokuapp.com/calender",
-        JSON.stringify(body),
-        {
-          headers: {
-            "Content-Type": `application/json`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      });
-    console.log(res);
+    // const res = await axios
+    //   .post(
+    //     "https://attendancechecknotice.herokuapp.com/calender",
+    //     JSON.stringify(body),
+    //     {
+    //       headers: {
+    //         "Content-Type": `application/json`,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
+
+    /* 데이터 전송 후 입력창 close & 입력값 초기화 */
+    setIsOpen(!isOpen);
+    setdate("");
+    setstate("");
+    setname("");
+    settitle("");
+    setfcreason("");
+    setprivates();
   };
 
   return (
@@ -176,7 +184,7 @@ export const Modal = () => {
                           value={name}
                           onChange={setnameHandler}
                         >
-                          <option value="">선택</option>
+                          <option value="">이름</option>
                           <option value="이승제">이승제</option>
                           <option value="김병민">김병민</option>
                         </select>
@@ -218,7 +226,7 @@ export const Modal = () => {
                         />
                       </li>
                       <li>
-                        <p className="pame">사유 :</p>
+                        <p className="pame">사유 </p>
                         <input
                           type="text"
                           name="reason"
@@ -227,7 +235,7 @@ export const Modal = () => {
                         />
                       </li>
                       <li>
-                        <p className="pame">사유 비공개 :</p>
+                        <p className="pame">사유 공개설정 </p>
                         <input
                           type="checkbox"
                           name="private"
