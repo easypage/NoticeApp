@@ -133,20 +133,21 @@ export const Modal = () => {
       date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
     };
     console.log(body);
+    console.log((date) => setdate(date));
 
-    // const res = await axios
-    //   .post(
-    //     "https://attendancechecknotice.herokuapp.com/calender",
-    //     JSON.stringify(body),
-    //     {
-    //       headers: {
-    //         "Content-Type": `application/json`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
+    const res = await axios
+      .post(
+        "https://attendancechecknotice.herokuapp.com/calender",
+        JSON.stringify(body),
+        {
+          headers: {
+            "Content-Type": `application/json`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      });
 
     /* 데이터 전송 후 입력창 close & 입력값 초기화 */
     setIsOpen(!isOpen);
