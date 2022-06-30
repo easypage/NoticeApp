@@ -6,7 +6,7 @@ function Users() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://attendancechecknotice.herokuapp.com/json"
+          "https://attendancechecknotice.herokuapp.com/calender"
         );
         console.log(response);
       } catch (e) {

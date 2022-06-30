@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ko } from "date-fns/esm/locale";
 import DatePicker from "react-datepicker"; // DatePicker 라는 컴포넌트도 가져오깅
 import "react-datepicker/dist/react-datepicker.css"; // 스타일 맥이기
-import { axios } from "axios";
+import axios from "axios";
 
 export const ModalContainer = styled.div`
   display: flex;
@@ -82,7 +82,7 @@ export const Modal = () => {
     setIsOpen(!isOpen);
   };
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
   const [state, setstate] = useState();
   const [fctitle, setfcTitle] = useState("");
   const [fcReason, setfcReason] = useState("");
@@ -108,7 +108,7 @@ export const Modal = () => {
     setfcReasonHidden(e.target.value);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     // state에 저장한 값을 가져옵니다.
 
@@ -124,10 +124,17 @@ export const Modal = () => {
         "-" +
         startDate.getDay(),
     };
+    console.log(body);
 
-    axios
+    // axios({
+    //   method: "post",
+    //   URL: "https://attendancechecknotice.herokuapp.com/calender",
+    //   data: { body },
+    //   headers: { "Content-Type": `application/json` },
+    // });
+    const res = await axios
       .post(
-        "https://attendancechecknotice.herokuapp.com/",
+        "https://attendancechecknotice.herokuapp.com/calender",
         JSON.stringify(body),
         {
           headers: {
@@ -138,6 +145,7 @@ export const Modal = () => {
       .then((res) => {
         console.log(res);
       });
+    console.log(res);
   };
 
   return (
