@@ -134,12 +134,6 @@ export const Modal = () => {
     };
     console.log(body);
 
-    axios({
-      method: "post",
-      URL: "https://attendancechecknotice.herokuapp.com/calender",
-      data: { body },
-      headers: { "Content-Type": `application/json` },
-    });
     const res = await axios
       .post(
         "https://attendancechecknotice.herokuapp.com/calender",
