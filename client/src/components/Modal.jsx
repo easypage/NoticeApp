@@ -82,30 +82,41 @@ export const Modal = () => {
     setIsOpen(!isOpen);
   };
 
-  const [startDate, setStartDate] = useState();
+  const [date, setdate] = useState();
   const [state, setstate] = useState();
-  const [fctitle, setfcTitle] = useState("");
-  const [fcReason, setfcReason] = useState("");
-  const [fcReasonHidden, setfcReasonHidden] = useState("");
+  const [name, setname] = useState("");
+  const [title, settitle] = useState("");
+  const [reason, setfcreason] = useState("");
+  const [privateReson, setprivates] = useState(false);
 
   const setstateHandler = (e) => {
     e.preventDefault();
     setstate(e.target.value);
   };
 
+  const setnameHandler = (e) => {
+    e.preventDefault();
+    setname(e.target.value);
+    console.log(e.target.value);
+  };
+
   const fcTitleHandler = (e) => {
     e.preventDefault();
-    setfcTitle(e.target.value);
+    settitle(e.target.value);
   };
 
   const fcReasonHandler = (e) => {
     e.preventDefault();
-    setfcReason(e.target.value);
+    setfcreason(e.target.value);
   };
 
   const fcReasonHiddenHandler = (e) => {
     e.preventDefault();
-    setfcReasonHidden(e.target.value);
+    if (e.target.value === "on") {
+      setprivates(true);
+    } else {
+      setprivates(false);
+    }
   };
 
   const submitHandler = async (e) => {
@@ -113,25 +124,22 @@ export const Modal = () => {
     // state에 저장한 값을 가져옵니다.
 
     let body = {
-      fctitle: fctitle,
-      fcReason: fcReason,
-      fcReasonHidden: fcReasonHidden,
+      name: name,
       state: state,
-      startDate:
-        startDate.getFullYear() +
-        "-" +
-        startDate.getMonth() +
-        "-" +
-        startDate.getDay(),
+      title: title,
+      reason: reason,
+      privateReason: privateReson,
+
+      date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
     };
     console.log(body);
 
-    // axios({
-    //   method: "post",
-    //   URL: "https://attendancechecknotice.herokuapp.com/calender",
-    //   data: { body },
-    //   headers: { "Content-Type": `application/json` },
-    // });
+    axios({
+      method: "post",
+      URL: "https://attendancechecknotice.herokuapp.com/calender",
+      data: { body },
+      headers: { "Content-Type": `application/json` },
+    });
     const res = await axios
       .post(
         "https://attendancechecknotice.herokuapp.com/calender",
@@ -169,33 +177,24 @@ export const Modal = () => {
                   <form onSubmit={submitHandler}>
                     <ul>
                       <li>
+                        <select
+                          name="name"
+                          value={name}
+                          onChange={setnameHandler}
+                        >
+                          <option value="">선택</option>
+                          <option value="이승제">이승제</option>
+                          <option value="김병민">김병민</option>
+                        </select>
+                      </li>
+                      <li>
                         <MyDatePicker
-                          id="mydp"
+                          id="date"
                           locale={ko}
-                          selected={startDate}
-                          onChange={(date) => setStartDate(date)}
+                          selected={date}
+                          onChange={(date) => setdate(date)}
                           dateFormat="yyyy-MM-dd" // 날짜 형식
                           placeholderText="Click to select a date"
-                        />
-                      </li>
-
-                      <li>
-                        <p className="pame">제목 :</p>
-                        <input
-                          type="text"
-                          name="fcTitle"
-                          id="fcTitle"
-                          onChange={fcTitleHandler}
-                          value={fctitle}
-                        />
-                      </li>
-                      <li>
-                        <p className="pame">사유 :</p>
-                        <input
-                          type="text"
-                          name="fcReason"
-                          id="fcReason"
-                          onChange={fcReasonHandler}
                         />
                       </li>
                       <li>
@@ -203,7 +202,7 @@ export const Modal = () => {
                         <input
                           type="checkbox"
                           name="state"
-                          id="tadry"
+                          id="state"
                           value={"지각"}
                           onChange={setstateHandler}
                         />
@@ -211,7 +210,7 @@ export const Modal = () => {
                         <input
                           type="checkbox"
                           name="state"
-                          id="absent"
+                          id="state"
                           value={"결석"}
                           onChange={setstateHandler}
                         />
@@ -219,21 +218,39 @@ export const Modal = () => {
                         <input
                           type="checkbox"
                           name="state "
-                          id="early-departure"
+                          id="state"
                           value={"조퇴"}
                           onChange={setstateHandler}
+                        />
+                      </li>
+                      <li>
+                        <p className="pame">사유 :</p>
+                        <input
+                          type="text"
+                          name="reason"
+                          id="reason"
+                          onChange={fcReasonHandler}
                         />
                       </li>
                       <li>
                         <p className="pame">사유 비공개 :</p>
                         <input
                           type="checkbox"
-                          name="fcReasonHidden"
-                          id="fcReasonHidden"
+                          name="private"
+                          id="private"
                           onChange={fcReasonHiddenHandler}
-                          value={"비공개"}
                         />
                         비공개
+                      </li>
+                      <li>
+                        <p className="pame">제목 :</p>
+                        <input
+                          type="text"
+                          name="title"
+                          id="title"
+                          onChange={fcTitleHandler}
+                          value={title}
+                        />
                       </li>
 
                       <button type="submit" className="insertButton">
