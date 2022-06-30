@@ -124,7 +124,20 @@ export const Modal = () => {
         "-" +
         startDate.getDay(),
     };
-    console.log(body);
+
+    axios
+      .post(
+        "https://attendancechecknotice.herokuapp.com/",
+        JSON.stringify(body),
+        {
+          headers: {
+            "Content-Type": `application/json`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
