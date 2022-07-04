@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ko } from "date-fns/esm/locale";
 import DatePicker from "react-datepicker"; // DatePicker 라는 컴포넌트도 가져오깅
 import "react-datepicker/dist/react-datepicker.css"; // 스타일 맥이기
+import CheckBox from "../common/CheckBox";
 import axios from "axios";
 
 export const ModalContainer = styled.div`
@@ -82,15 +83,26 @@ export const Modal = () => {
     setIsOpen(!isOpen);
   };
 
-  const [date, setdate] = useState("");
+  const [date, setdate] = useState(new Date());
   const [state, setstate] = useState("");
   const [name, setname] = useState("");
   const [title, settitle] = useState("");
   const [reason, setfcreason] = useState("");
   const [privateReson, setprivates] = useState(false);
 
+  const checkOnlyOne = (checkThis) => {
+    const checkboxes = document.getElementsByName("state");
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i] !== checkThis) {
+        checkboxes[i].checked = false;
+      }
+    }
+  };
+
   const setstateHandler = (e) => {
-    e.preventDefault();
+    checkOnlyOne(e.target);
+
     setstate(e.target.value);
   };
 
@@ -130,7 +142,8 @@ export const Modal = () => {
       reason: reason,
       privateReason: privateReson,
 
-      date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
+      date:
+        date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
     };
     console.log(body);
     console.log((date) => setdate(date));
@@ -176,7 +189,7 @@ export const Modal = () => {
               </div>
               <div className="fc-wrapper">
                 <div className="fc-content">
-                  <h1>일정</h1>
+                  <h1>일정 </h1>
                   <form onSubmit={submitHandler}>
                     <ul>
                       <li>
@@ -195,7 +208,11 @@ export const Modal = () => {
                           id="date"
                           locale={ko}
                           selected={date}
-                          onChange={(date) => setdate(date)}
+                          // onChange={(date) => setdate(date)}
+                          onChange={(date2) => {
+                            setdate(date2);
+                            console.log(date2);
+                          }}
                           dateFormat="yyyy-MM-dd" // 날짜 형식
                           placeholderText="Click to select a date"
                         />
@@ -220,7 +237,7 @@ export const Modal = () => {
                         조퇴
                         <input
                           type="checkbox"
-                          name="state "
+                          name="state"
                           id="state"
                           value={"조퇴"}
                           onChange={setstateHandler}
