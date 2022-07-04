@@ -6,12 +6,10 @@ function Users() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://attendancechecknotice.herokuapp.com"
+          "https://attendancechecknotice.herokuapp.com/calender/read"
         );
-        console.log(response);
-      } catch (e) {
-        console.log(e);
-      }
+        console.log(response.data.data);
+      } catch (e) {}
     };
 
     fetchUsers();

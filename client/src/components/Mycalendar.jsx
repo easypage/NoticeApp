@@ -38,6 +38,8 @@ class Mycalendar extends Component {
             locale={"ko"}
             buttonText={{
               today: "오늘",
+              prev: "이전",
+              next: "다음",
             }}
             defaultView="timeGridDay"
             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
@@ -47,8 +49,8 @@ class Mycalendar extends Component {
               center: "title",
             }}
             events={[
-              { title: "event 1", date: "2022-06-27" },
-              { title: "event 2", date: "2022-06-28" },
+              { title: "event 1", date: "2022-06-27", id: "asas" },
+              { title: "event 2", date: "2022-06-28", id: "asas" },
             ]}
             selectable={true}
             select={function (kk) {
