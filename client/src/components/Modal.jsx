@@ -82,7 +82,7 @@ export const Modal = () => {
     setIsOpen(!isOpen);
   };
 
-  const [date, setdate] = useState(new Date());
+  const [date, setdate] = useState("");
   const [state, setstate] = useState("");
   const [name, setname] = useState("");
   const [title, settitle] = useState("");
@@ -130,11 +130,10 @@ export const Modal = () => {
       reason: reason,
       privateReason: privateReson,
 
-      date:
-        date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+      date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
     };
-
     console.log(body);
+    console.log((date) => setdate(date));
 
     const res = await axios
       .post(
@@ -196,10 +195,7 @@ export const Modal = () => {
                           id="date"
                           locale={ko}
                           selected={date}
-                          onChange={(date2) => {
-                            setdate(date2);
-                            console.log(date);
-                          }}
+                          onChange={(date) => setdate(date)}
                           dateFormat="yyyy-MM-dd" // 날짜 형식
                           placeholderText="Click to select a date"
                         />
