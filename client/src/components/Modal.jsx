@@ -143,10 +143,14 @@ export const Modal = () => {
       privateReason: privateReson,
 
       date:
-        date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+        date.getFullYear() +
+        "-" +
+        (date.getMonth() + 1) +
+        "-" +
+        +date.getDate(),
     };
-    console.log(body);
-    console.log((date) => setdate(date));
+
+    console.log(date);
 
     const res = await axios
       .post(
@@ -207,13 +211,14 @@ export const Modal = () => {
                         <MyDatePicker
                           id="date"
                           locale={ko}
-                          selected={date}
-                          // onChange={(date) => setdate(date)}
+                          dateFormat="yyyy-MM-dd" // 날짜 형식
                           onChange={(date2) => {
                             setdate(date2);
                             console.log(date2);
                           }}
-                          dateFormat="yyyy-MM-dd" // 날짜 형식
+                          selected={date}
+                          // onChange={(date) => setdate(date)}
+
                           placeholderText="Click to select a date"
                         />
                       </li>
