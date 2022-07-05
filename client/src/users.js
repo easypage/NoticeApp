@@ -6,29 +6,29 @@ function Users() {
   const [calList, setCalList] = useState([]);
 
   useEffect(() => {
-    // const fetchUsers = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       "https://attendancechecknotice.herokuapp.com/calender/read"
-    //     );
-    //     const calarr = response.data.data.map((arr) => {
-    //       return {
-    //         id: arr.noticeToken,
-    //         date: arr.date,
-    //         name: arr.name,
-    //       };
-    //     });
-    //     setCalList(calarr);
-    //     console.log(calarr);
-    //   } catch (e) {}
-    // };
-    // fetchUsers();
-  }, []);
+    const awaitFunc = async () => {
+      await axios
+        .get("https://attendancechecknotice.herokuapp.com/calender/read")
+        .then((result) => {
+          const calarr = result.data.data.map((arr) => {
+            return {
+              id: arr.noticeToken,
+              date: arr.date,
+              title: arr.name,
+            };
+          });
+          console.log(calarr);
+          setCalList(calarr);
+        });
+    };
 
+    awaitFunc();
+  }, [calList]);
+  const arr = [];
   return (
-    <ul>
-      <Mycalendar list={calList} />;
-    </ul>
+    <div>
+      <Mycalendar mycal={calList} />
+    </div>
   );
 }
 

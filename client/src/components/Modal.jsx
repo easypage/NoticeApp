@@ -145,12 +145,10 @@ export const Modal = () => {
       date:
         date.getFullYear() +
         "-" +
-        (date.getMonth() + 1) +
+        ("0" + (date.getMonth() + 1)).slice(-2) +
         "-" +
-        +date.getDate(),
+        ("0" + date.getDate()).slice(-2),
     };
-
-    console.log(date);
 
     const res = await axios
       .post(

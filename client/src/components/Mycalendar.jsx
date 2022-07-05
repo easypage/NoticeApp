@@ -14,34 +14,32 @@ class Mycalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calArr: [
-        { title: "eve3", date: "2022-06-07" },
-        { title: "event 2", date: "2022-06-28" },
-      ],
+      calArr: [{ date: this.props.mycal }],
     };
   }
   state = {
     modalIsOpen: false,
     secondModalIsOpen: false,
   };
-  componentDidMount(props) {
-    axios
-      .get("https://attendancechecknotice.herokuapp.com/calender/read")
-      .then((result) => {
-        console.log(result);
-        const resList = result.data.data.map((arr) => {
-          return {
-            title: arr.name,
-            date: arr.date,
-          };
-        });
+  componentDidMount(props) {}
 
-        console.log("calarr호출");
-        console.log(this.state.calArr);
-        console.log("=====");
-        console.log();
-      });
-  }
+  // componentDidMount(props) {
+  //   // axios
+  //   //   .get("https://attendancechecknotice.herokuapp.com/calender/read")
+  //   //   .then((result) => {
+  //   //     const resList = result.data.data.map((arr) => {
+  //   //       return {
+  //   //         id: arr.noticeToken,
+  //   //         title: arr.name,
+  //   //         date: arr.date,
+  //   //       };
+  //   //     });
+  //   //     this.setState((state) => {
+  //   //       return { calArr: resList };
+  //   //     });
+  //   //     console.log(this.state.calArr);
+  //   //   });
+  // }
 
   openModal = () => {
     this.setState({ modalIsOpen: true });
@@ -77,24 +75,23 @@ class Mycalendar extends Component {
               next: "다음",
             }}
             defaultView="timeGridDay"
+            events={this.state.calArr}
             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
             headerToolbar={{
               right: "",
               left: "prev,today,next",
               center: "title",
             }}
-            events={this.state.calArr}
             selectable={true}
-            select={function (kk) {
-              console.log();
-              console.log(kk.startStr);
-            }}
           />
         </div>
+
         <Modal />
       </div>
     );
   }
 }
-
+Mycalendar.defaultProps = {
+  mycal: [],
+};
 export default Mycalendar;
