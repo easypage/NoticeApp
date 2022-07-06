@@ -25,11 +25,7 @@ function Users() {
     awaitFunc();
   }, []);
   const arr = [];
-  return (
-    <div>
-      <Mycalendar mycal={calList} />
-    </div>
-  );
+  return <div>{calList.length !== 0 && <Mycalendar mycal={calList} />}</div>;
 }
 
 export default Users;

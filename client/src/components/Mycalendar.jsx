@@ -83,8 +83,24 @@ class Mycalendar extends Component {
               left: "prev,today,next",
               center: "title",
             }}
-            selectable={true}
-            dateClick={function (info) {}}
+            dayMaxEvents={3}
+            eventClick={async function () {
+              const cfd = window.confirm("삭제하시겠습니까?");
+              if (cfd) {
+                const data = {};
+                const res = axios
+                  .post(
+                    "https://attendancechecknotice.herokuapp.com/calender/delete",
+                    data
+                  )
+                  .then((res) => {
+                    console.log(res);
+                  });
+
+                alert("삭제완료");
+              } else {
+              }
+            }}
           />
         </div>
 
