@@ -3,18 +3,19 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import axios from "axios";
 
 import "../css/main.css";
 import { Modal } from "./Modal";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import axios from "axios";
+import Test1 from "./Test1";
 
 class Mycalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calArr: [{ date: this.props.mycal }],
+      calArr: [this.props.mycal],
     };
   }
   state = {
@@ -75,7 +76,7 @@ class Mycalendar extends Component {
               next: "다음",
             }}
             defaultView="timeGridDay"
-            events={this.state.calArr}
+            events={this.props.mycal}
             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
             headerToolbar={{
               right: "",
@@ -83,6 +84,7 @@ class Mycalendar extends Component {
               center: "title",
             }}
             selectable={true}
+            dateClick={function (info) {}}
           />
         </div>
 

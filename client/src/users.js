@@ -17,13 +17,13 @@ function Users() {
               title: arr.name,
             };
           });
-          console.log(calarr);
           setCalList(calarr);
+          console.log(calarr);
         });
     };
 
     awaitFunc();
-  }, [calList]);
+  }, []);
   const arr = [];
   return (
     <div>
