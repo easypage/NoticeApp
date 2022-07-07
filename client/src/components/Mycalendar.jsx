@@ -84,11 +84,15 @@ class Mycalendar extends Component {
               center: "title",
             }}
             dayMaxEvents={3}
-            eventClick={async function () {
+            eventClick={async function (info) {
+              const myid = info.event.id;
               const cfd = window.confirm("삭제하시겠습니까?");
+              const data = {
+                token: myid,
+              };
+
               if (cfd) {
-                const data = {};
-                const res = axios
+                const res = await axios
                   .post(
                     "https://attendancechecknotice.herokuapp.com/calender/delete",
                     data
