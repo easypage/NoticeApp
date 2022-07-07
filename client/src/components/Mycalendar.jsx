@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -9,19 +9,22 @@ import "../css/main.css";
 import { Modal } from "./Modal";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import Test1 from "./Test1";
+import { ResonView } from "./ReasonView";
+import { toHaveDisplayValue } from "@testing-library/jest-dom/dist/matchers";
 
 class Mycalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calArr: [this.props.mycal],
+      calArr: ["ASd"],
     };
   }
   state = {
+    count: 0,
     modalIsOpen: false,
     secondModalIsOpen: false,
   };
+
   componentDidMount(props) {}
 
   // componentDidMount(props) {
@@ -63,7 +66,6 @@ class Mycalendar extends Component {
   //     console.log(calarr);
   //   } catch (e) {}
   // };
-
   render() {
     return (
       <div className="mypage-body">
@@ -79,9 +81,32 @@ class Mycalendar extends Component {
             events={this.props.mycal}
             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
             headerToolbar={{
-              right: "",
-              left: "prev,today,next",
+              right: "prev,today,next",
+              left: "",
               center: "title",
+            }}
+            dateClick={function (info) {
+              console.log(info.view);
+            }}
+            editable={true}
+            droppable={true}
+            eventDrop={function (info) {
+              const myid = info.event.id;
+              const udate = info.event.startStr;
+              console.log(udate);
+              let datas = {
+                token: myid,
+                date: udate,
+              };
+              axios
+                .post(
+                  "https://attendancechecknotice.herokuapp.com/calender/update",
+                  datas
+                )
+                .then((res) => {
+                  console.log(res);
+                  console.log(udate);
+                });
             }}
             dayMaxEvents={3}
             eventClick={async function (info) {
@@ -91,19 +116,23 @@ class Mycalendar extends Component {
                 token: myid,
               };
 
-              if (cfd) {
-                const res = await axios
-                  .post(
-                    "https://attendancechecknotice.herokuapp.com/calender/delete",
-                    data
-                  )
-                  .then((res) => {
-                    console.log(res);
-                  });
+              this.setState({
+                myid: "sd",
+              });
 
-                alert("삭제완료");
-              } else {
-              }
+              console.log(myid);
+              // if (cfd) {
+              //   const res = await axios
+              //     .post(
+              //       "https://attendancechecknotice.herokuapp.com/calender/delete",
+              //       data
+              //     )
+              //     .then((res) => {
+              //       console.log(res);
+              //     });
+              //   console.log(data);
+              // } else {
+              // }
             }}
           />
         </div>

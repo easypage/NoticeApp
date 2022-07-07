@@ -79,16 +79,16 @@ export const ModalView = styled.div.attrs((props) => ({
 `;
 export const Modal = () => {
   const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
-  const openModalHandler = (event) => {
-    setIsOpen(!isOpen);
-  };
-
   const [date, setdate] = useState(new Date());
   const [state, setstate] = useState("");
   const [name, setname] = useState("");
   const [title, settitle] = useState("");
   const [reason, setfcreason] = useState("");
   const [privateReson, setprivates] = useState(false);
+
+  const openModalHandler = (event) => {
+    setIsOpen(!isOpen);
+  };
 
   const checkOnlyOne = (checkThis) => {
     const checkboxes = document.getElementsByName("state");

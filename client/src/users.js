@@ -10,12 +10,21 @@ function Users() {
       await axios
         .get("https://attendancechecknotice.herokuapp.com/calender/read")
         .then((result) => {
+          console.log(result);
           const calarr = result.data.data.map((arr) => {
-            return {
+            const calData = {
               id: arr.noticeToken,
               date: arr.date,
-              title: arr.name,
+              title: arr.name + " : " + arr.state,
             };
+            if (arr.state === "결석") {
+              calData.color = "#af1a1a";
+            } else if (arr.state === "조퇴") {
+              calData.color = "#d68010";
+            } else {
+              calData.color = "#005fb8";
+            }
+            return calData;
           });
           setCalList(calarr);
           console.log(calarr);
