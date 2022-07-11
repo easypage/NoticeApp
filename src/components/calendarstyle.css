@@ -1,52 +1,52 @@
 .mypage-body {
-  margin: 0 auto;
-  padding: 0 auto;
-  width: 950px;
-  height: 30px;
+    margin: 0 auto;
+    padding: 0 auto;
+    width: 950px;
+    height: 30px;
 }
 
 input[type="text"] {
-  width: 400px;
-  height: 40px;
-  font-size: 15px;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  padding-left: 10px;
-  background-color: rgb(233, 233, 233);
+    width: 400px;
+    height: 40px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
 }
 input[type="date"] {
-  width: 400px;
-  height: 40px;
-  font-size: 18px;
-  font-family: "KOTRAHOPE";
-  font-weight: bold;
-  font-style: normal;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  padding-left: 10px;
-  background-color: rgb(233, 233, 233);
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    font-family: "KOTRAHOPE";
+    font-weight: bold;
+    font-style: normal;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
 }
 .insertButton {
-  width: 100px;
-  height: 40px;
-  font-size: 18px;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  padding-left: 10px;
-  background-color: rgb(233, 233, 233);
-  margin-top: 10px;
-  text-align: center;
-  position: relative;
-  left: 150px;
-  cursor: pointer;
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    left: 150px;
+    cursor: pointer;
 }
 select {
-  width: 150px;
-  height: 35px;
-  padding: 5px 30px 5px 10px;
-  border-radius: 4px;
-  outline: 0 none;
+    width: 150px;
+    height: 35px;
+    padding: 5px 30px 5px 10px;
+    border-radius: 4px;
+    outline: 0 none;
 }
