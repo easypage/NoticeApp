@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker"; // DatePicker 라는 컴포넌트도 
 import "react-datepicker/dist/react-datepicker.css"; // 스타일 맥이기
 import axios from "axios";
 
-export const ModalContainer = styled.div`
+const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@ export const ModalContainer = styled.div`
   position: relative;
 `;
 
-export const MyDatePicker = styled(DatePicker)`
+const MyDatePicker = styled(DatePicker)`
   width: 90%;
   height: 3rem;
   font-size: 1.6rem;
@@ -23,7 +23,7 @@ export const MyDatePicker = styled(DatePicker)`
   border: 1px solid;
 `;
 
-export const ModalBackdrop = styled.div`
+const ModalBackdrop = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@ export const ModalBackdrop = styled.div`
   z-index: 1;
 `;
 
-export const ModalBtn = styled.button`
+const ModalBtn = styled.button`
   background-color: #4000c7;
   font-size: 20px;
   text-decoration: none;
@@ -49,14 +49,14 @@ export const ModalBtn = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  cursor: grab;
+  cursor: pointer;
   position: relative;
   top: 0px;
   left: 510px;
   z-index: 1;
 `;
 
-export const ModalView = styled.div.attrs((props) => ({
+const ModalView = styled.div.attrs((props) => ({
   role: "dialog",
 }))`
   display: flex;
@@ -71,12 +71,25 @@ export const ModalView = styled.div.attrs((props) => ({
   > .close-btn {
     position: absolute;
     font-size: 75px;
-    top: -90px;
-    right: 30px;
+    top: 0px;
+    right: 0px;
+    margin: 0;
     cursor: pointer;
+    > p {
+      margin: 0;
+    }
   }
 `;
-export const Modal = () => {
+
+const ModalPrivateCheck = styled.li`
+  display: flex;
+  align-items: center;
+  input {
+    margin-left: 20px;
+  }
+`;
+
+export const CalendarModal = () => {
   const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
   const [date, setdate] = useState(new Date());
   const [state, setstate] = useState("");
@@ -188,9 +201,11 @@ export const Modal = () => {
               <div className="close-btn" onClick={openModalHandler}>
                 <p>x</p>
               </div>
+
               <div className="fc-wrapper">
                 <div className="fc-content">
                   <h1>일정 </h1>
+
                   <form onSubmit={submitHandler}>
                     <ul>
                       <li>
@@ -254,7 +269,7 @@ export const Modal = () => {
                           onChange={fcReasonHandler}
                         />
                       </li>
-                      <li>
+                      <ModalPrivateCheck>
                         <p className="pame">사유 공개설정 </p>
                         <input
                           type="checkbox"
@@ -263,17 +278,7 @@ export const Modal = () => {
                           onChange={fcReasonHiddenHandler}
                         />
                         비공개
-                      </li>
-                      <li>
-                        <p className="pame">제목 :</p>
-                        <input
-                          type="text"
-                          name="title"
-                          id="title"
-                          onChange={fcTitleHandler}
-                          value={title}
-                        />
-                      </li>
+                      </ModalPrivateCheck>
 
                       <button type="submit" className="insertButton">
                         등록

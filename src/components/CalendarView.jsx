@@ -4,7 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import axios from "axios";
-import { Modal } from "./Modal";
+import { CalendarModal } from "./CalendarModal";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 import "./calendarstyle.css";
@@ -108,33 +108,11 @@ class CalendarView extends Component {
             dayMaxEvents={3}
             eventClick={async function (info) {
               const myid = info.event.id;
-              const cfd = window.confirm("삭제하시겠습니까?");
-              const data = {
-                token: myid,
-              };
-
-              this.setState({
-                myid: "sd",
-              });
-
-              console.log(myid);
-              // if (cfd) {
-              //   const res = await axios
-              //     .post(
-              //       "https://attendancechecknotice.herokuapp.com/calender/delete",
-              //       data
-              //     )
-              //     .then((res) => {
-              //       console.log(res);
-              //     });
-              //   console.log(data);
-              // } else {
-              // }
             }}
           />
         </div>
 
-        <Modal />
+        <CalendarModal />
       </div>
     );
   }
