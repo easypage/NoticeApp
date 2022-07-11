@@ -1,12 +1,12 @@
 import React from "react";
 
-import ReadCalendarData from "../components/ReadCalendarData";
+import ReadCalendarViewData from "../components/ReadCalendarViewData";
 
 function App() {
-  return (
-    <div className="App">
-      <ReadCalendarData />
-    </div>
-  );
+    return (
+        <div className="App">
+            <ReadCalendarViewData />
+        </div>
+    );
 }
 export default App;

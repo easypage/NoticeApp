@@ -8,50 +8,50 @@ import { CalendarModal } from "./CalendarModal";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 import "./calendarstyle.css";
-import "./main.css";
+import "./calendar.css";
 
 class CalendarView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      calArr: ["ASd"],
+    constructor(props) {
+        super(props);
+        this.state = {
+            calArr: ["aaa"],
+        };
+    }
+    state = {
+        count: 0,
+        modalIsOpen: false,
     };
-  }
-  state = {
-    count: 0,
-    modalIsOpen: false,
-  };
 
-  componentDidMount(props) {}
+    componentDidMount(props) {}
 
-  // componentDidMount(props) {
-  //   // axios
-  //   //   .get("https://attendancechecknotice.herokuapp.com/calender/read")
-  //   //   .then((result) => {
-  //   //     const resList = result.data.data.map((arr) => {
-  //   //       return {
-  //   //         id: arr.noticeToken,
-  //   //         title: arr.name,
-  //   //         date: arr.date,
-  //   //       };
-  //   //     });
-  //   //     this.setState((state) => {
-  //   //       return { calArr: resList };
-  //   //     });
-  //   //     console.log(this.state.calArr);
-  //   //   });
-  // }
+    // componentDidMount(props) {
+    //   // axios
+    //   //   .get("https://attendancechecknotice.herokuapp.com/calender/read")
+    //   //   .then((result) => {
+    //   //     const resList = result.data.data.map((arr) => {
+    //   //       return {
+    //   //         id: arr.noticeToken,
+    //   //         title: arr.name,
+    //   //         date: arr.date,
+    //   //       };
+    //   //     });
+    //   //     this.setState((state) => {
+    //   //       return { calArr: resList };
+    //   //     });
+    //   //     console.log(this.state.calArr);
+    //   //   });
+    // }
 
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-  };
+    openModal = () => {
+        this.setState({ modalIsOpen: true });
+    };
 
-  closeModal = () => {
-    this.setState({ modalIsOpen: false });
-  };
+    closeModal = () => {
+        this.setState({ modalIsOpen: false });
+    };
 
-  // fetchUsers = async () => {
-  //   try {
+    // fetchUsers = async () => {
+    //   try {
 
   // const calarr = response.data.data.map((arr) => {
   //   return {
@@ -118,6 +118,6 @@ class CalendarView extends Component {
   }
 }
 CalendarView.defaultProps = {
-  mycal: [],
+    mycal: [],
 };
 export default CalendarView;
