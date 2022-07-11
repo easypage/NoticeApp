@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Mycalendar from "../../components/Mycalendar";
+import CalendarView from "./CalendarView";
 
-function Users() {
+function ReadCalendarData() {
   const [calList, setCalList] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function Users() {
 
     awaitFunc();
   }, []);
-  return <div>{calList.length !== 0 && <Mycalendar mycal={calList} />}</div>;
+  return <div>{calList.length !== 0 && <CalendarView mycal={calList} />}</div>;
 }
 
-export default Users;
+export default ReadCalendarData;

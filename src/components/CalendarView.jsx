@@ -1,18 +1,16 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import axios from "axios";
-
-import "../css/main.css";
 import { Modal } from "./Modal";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import { ResonView } from "./ReasonView";
-import { toHaveDisplayValue } from "@testing-library/jest-dom/dist/matchers";
+import "./calendarstyle.css";
+import "./main.css";
 
-class Mycalendar extends Component {
+class CalendarView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +20,6 @@ class Mycalendar extends Component {
   state = {
     count: 0,
     modalIsOpen: false,
-    secondModalIsOpen: false,
   };
 
   componentDidMount(props) {}
@@ -142,7 +139,7 @@ class Mycalendar extends Component {
     );
   }
 }
-Mycalendar.defaultProps = {
+CalendarView.defaultProps = {
   mycal: [],
 };
-export default Mycalendar;
+export default CalendarView;

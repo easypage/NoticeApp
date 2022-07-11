@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { ko } from "date-fns/esm/locale";
 import DatePicker from "react-datepicker"; // DatePicker 라는 컴포넌트도 가져오깅
 import "react-datepicker/dist/react-datepicker.css"; // 스타일 맥이기
-import CheckBox from "../common/CheckBox";
 import axios from "axios";
 
 export const ModalContainer = styled.div`

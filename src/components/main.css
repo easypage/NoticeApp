@@ -198,12 +198,12 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 }
 .fc .fc-button-primary {
   color: white;
-  background-color: #660ba3;
+  background-color: #6b2799;
   border-color: #660ba3;
 }
 .fc .fc-button-primary:hover {
   color: #fff;
-  background-color: #8335b8;
+  background-color: #4e0083;
 }
 .fc .fc-button-primary:disabled {
   /* not DRY */
@@ -221,7 +221,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 }
 .fc .fc-button-primary:not(:disabled):active:focus,
 .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
-  box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
 }
 .fc {
   /* icons within buttons */
@@ -536,10 +535,7 @@ a.fc-event:hover {
   right: 0;
   bottom: 0;
 }
-.fc-event-selected,
-.fc-event:focus {
-  /* dimmer effect */
-}
+
 .fc-event-selected:after,
 .fc-event:focus:after {
   content: "";
@@ -679,60 +675,7 @@ A HORIZONTAL event
   background: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
 }
 
-.mypage-body {
-  margin: 0 auto;
-  padding: 0 auto;
-  width: 950px;
-  height: 30px;
-}
 .fc-content ul li {
   list-style: none;
   margin-top: 10px;
-}
-input {
-}
-input[type="text"] {
-  width: 400px;
-  height: 40px;
-  font-size: 15px;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  padding-left: 10px;
-  background-color: rgb(233, 233, 233);
-}
-input[type="date"] {
-  width: 400px;
-  height: 40px;
-  font-size: 18px;
-  font-family: "KOTRAHOPE";
-  font-weight: bold;
-  font-style: normal;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  padding-left: 10px;
-  background-color: rgb(233, 233, 233);
-}
-.insertButton {
-  width: 100px;
-  height: 40px;
-  font-size: 18px;
-  border: 0;
-  border-radius: 15px;
-  outline: none;
-  padding-left: 10px;
-  background-color: rgb(233, 233, 233);
-  margin-top: 10px;
-  text-align: center;
-  position: relative;
-  left: 150px;
-  cursor: pointer;
-}
-select {
-  width: 150px;
-  height: 35px;
-  padding: 5px 30px 5px 10px;
-  border-radius: 4px;
-  outline: 0 none;
 }
