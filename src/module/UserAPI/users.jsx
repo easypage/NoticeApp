@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Mycalendar from "./components/Mycalendar";
+import Mycalendar from "../../components/Mycalendar";
 
 function Users() {
   const [calList, setCalList] = useState([]);
@@ -33,7 +33,6 @@ function Users() {
 
     awaitFunc();
   }, []);
-  const arr = [];
   return <div>{calList.length !== 0 && <Mycalendar mycal={calList} />}</div>;
 }
 
