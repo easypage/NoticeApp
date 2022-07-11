@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CalendarView from "./CalendarView";
 
-function ReadCalendarData() {
+function ReadCalendarViewData() {
   const [calList, setCalList] = useState([]);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ function ReadCalendarData() {
   return <div>{calList.length !== 0 && <CalendarView mycal={calList} />}</div>;
 }
 
-export default ReadCalendarData;
+export default ReadCalendarViewData;

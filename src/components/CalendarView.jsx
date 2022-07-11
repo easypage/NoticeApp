@@ -4,7 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import axios from "axios";
-import { Modal } from "./Modal";
+import { CalendarModal } from "./CalendarModal";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 import "./calendarstyle.css";
@@ -134,7 +134,7 @@ class CalendarView extends Component {
           />
         </div>
 
-        <Modal />
+        <CalendarModal />
       </div>
     );
   }

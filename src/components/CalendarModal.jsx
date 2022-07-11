@@ -76,7 +76,7 @@ export const ModalView = styled.div.attrs((props) => ({
     cursor: pointer;
   }
 `;
-export const Modal = () => {
+export const CalendarModal = () => {
   const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
   const [date, setdate] = useState(new Date());
   const [state, setstate] = useState("");

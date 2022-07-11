@@ -1,11 +1,11 @@
 import React from "react";
 
-import ReadCalendarData from "../components/ReadCalendarData";
+import ReadCalendarViewData from "../components/ReadCalendarViewData";
 
 function App() {
   return (
     <div className="App">
-      <ReadCalendarData />
+      <ReadCalendarViewData />
     </div>
   );
 }
