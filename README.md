@@ -12,7 +12,8 @@
 
 💡 **Server** 는 **Heroku**를 이용하여 **nodejs**를 배포하였습니다.
 
-⏩ [프론트엔드 Github](https://github.com/easypage/NoticeApp)
+⏩ [백엔드 Github](https://github.com/easypage/noticeAppServer)
+<br/>
 ⏩ [heroku배포서버](https://attendancechecknotice.herokuapp.com/)<br/>
 
 ---
