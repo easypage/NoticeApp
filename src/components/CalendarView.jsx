@@ -11,47 +11,46 @@ import "./calendarstyle.css";
 import "./calendar.css";
 
 class CalendarView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            calArr: ["aaa"],
-        };
-    }
-    state = {
-        count: 0,
-        modalIsOpen: false,
+  constructor(props) {
+    console.log();
+    super(props);
+    this.state = {
+      calArr: ["aaa"],
     };
+  }
+  state = {
+    count: 0,
+    modalIsOpen: false,
+  };
 
-    componentDidMount(props) {}
+  // componentDidMount(props) {
+  //   // axios
+  //   //   .get("https://attendancechecknotice.herokuapp.com/calender/read")
+  //   //   .then((result) => {
+  //   //     const resList = result.data.data.map((arr) => {
+  //   //       return {
+  //   //         id: arr.noticeToken,
+  //   //         title: arr.name,
+  //   //         date: arr.date,
+  //   //       };
+  //   //     });
+  //   //     this.setState((state) => {
+  //   //       return { calArr: resList };
+  //   //     });
+  //   //     console.log(this.state.calArr);
+  //   //   });
+  // }
 
-    // componentDidMount(props) {
-    //   // axios
-    //   //   .get("https://attendancechecknotice.herokuapp.com/calender/read")
-    //   //   .then((result) => {
-    //   //     const resList = result.data.data.map((arr) => {
-    //   //       return {
-    //   //         id: arr.noticeToken,
-    //   //         title: arr.name,
-    //   //         date: arr.date,
-    //   //       };
-    //   //     });
-    //   //     this.setState((state) => {
-    //   //       return { calArr: resList };
-    //   //     });
-    //   //     console.log(this.state.calArr);
-    //   //   });
-    // }
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
 
-    openModal = () => {
-        this.setState({ modalIsOpen: true });
-    };
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  };
 
-    closeModal = () => {
-        this.setState({ modalIsOpen: false });
-    };
-
-    // fetchUsers = async () => {
-    //   try {
+  // fetchUsers = async () => {
+  //   try {
 
   // const calarr = response.data.data.map((arr) => {
   //   return {
@@ -101,6 +100,7 @@ class CalendarView extends Component {
                   datas
                 )
                 .then((res) => {
+                  alert("수정되었습니다.");
                   console.log(res);
                   console.log(udate);
                 });
@@ -111,13 +111,11 @@ class CalendarView extends Component {
             }}
           />
         </div>
-
-        <CalendarModal />
       </div>
     );
   }
 }
 CalendarView.defaultProps = {
-    mycal: [],
+  mycal: [],
 };
 export default CalendarView;
